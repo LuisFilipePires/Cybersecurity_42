@@ -8,27 +8,23 @@ import requests # requests module is used to make HTTP requests
 #recursivly downloads images from a given url.
 
 from utils2 import parse_terminal
+from utils2 import crawl
 
 ALLOWED_EXT = (".jpg", ".jpeg", ".png", ".gif", ".bmp")
 
-url, recursive, depth, path  = parse_terminal(sys.argv)
+url, depth, path  = parse_terminal(sys.argv)
 
 visited = set()   # create an empty set
+count_depth = 0
 #response = requests.get(url)
+init()
+print_title()
 
-def crawl(url, depth):
-    headers = {
-        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) Spider42/1.0"
-        }
-    try:
-        response = requests.get(url, headers=headers, timeout=10)
-        if response.status_code == 200:
-            print(f"Spider: Link ok:")
-        
-    except Exception as e:
-        print(f"\nSpider: error URL: {e}")
-        if depth  == 0:
-            print_close()
-            sys.exit(1)
-    
+crawl(visited, url, depth, path, count_depth)
+
+print_close()
+sys.exit(1)
+
+
+
 
