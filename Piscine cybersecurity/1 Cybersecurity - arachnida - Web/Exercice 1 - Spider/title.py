@@ -1,3 +1,4 @@
+#title.py
 
 from colorama import Fore
 
@@ -39,7 +40,7 @@ title = """
 close = """
          888                         
  e88'888 888  e88 88e   dP"Y  ,e e,  
-d888  '8 888 d888 888b C88b  d88 88b 
+d889  '8 888 d888 888b C88b  d88 88b 
 Y888   , 888 Y888 888P  Y88D 888   , 
  "88,e8' 888  "88 88"  d,dP   "YeeP" 
 """

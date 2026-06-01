@@ -1,3 +1,5 @@
+#utils2.py
+
 from pathlib import Path # Path is used to handle file paths and directories
 import requests # requests module is used to make HTTP requests
 
@@ -22,41 +24,45 @@ def parse_terminal(argv):
     valid_flags = {"-r", "-l", "-p"}
     i = 1
 
-    if (len(argv) <= 1 or len(argv) > 7):
-        raise ValueError("\nBAD ENTRY: optional: -r (recursive) -l (+ number of deph) -p (+ path directory)\nMandatory:\t link(http://exemple.com)")
-    while i < len(argv):
-        arg = argv[i]
-        if arg.startswith("-") and arg not in valid_flags:
-            raise ValueError(f"Invalid flag: {arg}")
-        elif arg == "-r":
-            recursive = True
-        elif not arg.startswith("-"): #URL its the one starts without -
-            if url is None:
-                url = arg
-            else:
-                raise ValueError("Multiple URLs not allowed")
-        elif arg == "-l":
-            if i < len(argv) - 1 and argv[i + 1].isdigit():
-                i += 1
-                depth = int(argv[i])
-            else:
-                raise ValueError("-l must be followed by a positive integer")
-        elif arg == "-p":
-            if i < len(argv) - 1 and argv[i + 1].strip() != "":
-                i += 1
-                path = Path(argv[i])
-            else:
-                raise ValueError("-p error: missing path")
-        i += 1
-    if url is None:
-        raise ValueError("Missing URL")
-    if not url.startswith(("http://", "https://")):
-        raise ValueError("Invalid URL format")
-    if not recursive:
-        print("\nCaution: recursive is off\n-l flag is only valid with -r")
-        depth = 0 
-    return (url, depth, path)
-
+    try:
+        if (len(argv) <= 1 or len(argv) > 7):
+            raise ValueError("\nBAD ENTRY: optional: -r (recursive) -l (+ number of deph) -p (+ path directory)\nMandatory:\t link(http://exemple.com)")
+            return
+        while i < len(argv):
+            arg = argv[i]
+            if arg.startswith("-") and arg not in valid_flags:
+                raise ValueError(f"Invalid flag: {arg}")
+            elif arg == "-r":
+                recursive = True
+            elif not arg.startswith("-"): #URL its the one starts without -
+                if url is None:
+                    url = arg
+                else:
+                    raise ValueError("Multiple URLs not allowed")
+            elif arg == "-l":
+                if i < len(argv) - 1 and argv[i + 1].isdigit():
+                    i += 1
+                    depth = int(argv[i])
+                else:
+                    raise ValueError("-l must be followed by a positive integer")
+            elif arg == "-p":
+                if i < len(argv) - 1 and argv[i + 1].strip() != "":
+                    i += 1
+                    path = Path(argv[i])
+                else:
+                    raise ValueError("-p error: missing path")
+            i += 1
+        if url is None:
+            raise ValueError("Missing URL")
+        if not url.startswith(("http://", "https://")):
+            raise ValueError("Invalid URL format")
+        if not recursive:
+            print("\nCaution: recursive is off\n-l flag is only valid with -r")
+            depth = 0 
+        return (url, depth, path)
+    except Exception as e:
+        print (f"Please enter URL (http://, https://) optional ( -r (recursive), -l + Number (deph), -p + path (path directory)\n{e}")
+        return
 
 
 def download_images(url, soup, path):
@@ -98,8 +104,13 @@ def download_images(url, soup, path):
 
 def crawl(visited, url, depth, path, count_depth):
     try:
-        print(f"Depth: {count_depth}\n")
-        if count_depth > depth or url in visited:
+        print(f"Depth: {count_depth} | URL: {url}\n")
+        if url in visited:
+            print ("alredy visited")
+            return
+        #only to debugging
+        if count_depth > depth:
+            print (f"below depth: {count_depth}")
             return
         
         headers = {
@@ -127,10 +138,8 @@ def crawl(visited, url, depth, path, count_depth):
             href = link.get("href")
             if href:
                 next_url = urljoin(url, href)
-
                 if next_url.startswith(("http://", "https://")):
-                    count_depth += 1
-                    crawl(visited, next_url, depth, path, count_depth)
+                    crawl(visited, next_url, depth, path, count_depth + 1)
         
     except Exception as e:
             print(f"Error in Crawl: {e}")

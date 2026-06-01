@@ -1,3 +1,5 @@
+#spyder2.py
+
 from pathlib import Path # Path is used to handle file paths and directories
 from colorama import init
 import sys # sys module is used to access command-line arguments
@@ -14,7 +16,7 @@ ALLOWED_EXT = (".jpg", ".jpeg", ".png", ".gif", ".bmp")
 
 url, depth, path  = parse_terminal(sys.argv)
 
-visited = set()   # create an empty set
+visited = set()   # create an empty set, $visited saves all url's pulled inside
 count_depth = 0
 #response = requests.get(url)
 init()

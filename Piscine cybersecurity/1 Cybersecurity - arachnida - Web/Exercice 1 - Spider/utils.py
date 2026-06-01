@@ -1,3 +1,5 @@
+#utils.py
+
 ALLOWED_EXT = (".jpg", ".jpeg", ".png", ".gif", ".bmp")
 #ALLOWED_EXT = (".jpg", ".jpeg")
 
