@@ -8,7 +8,7 @@ The most well-known project is:
 
 It is a list of the 10 most critical vulnerabilities in web applications.
 
-## Common examples include:
+## Common examples include
 
 SQL Injection
 Broken Authentication
