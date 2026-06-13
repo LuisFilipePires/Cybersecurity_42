@@ -9,15 +9,15 @@ The most well-known project is:
 It is a list of the 10 most critical vulnerabilities in web applications.
 
 ### Common examples include
-SQL Injection
+  *  SQL Injection
 
-Broken Authentication
+  *  Broken Authentication
 
-Cross-Site Scripting (XSS)
+  *  Cross-Site Scripting (XSS)
 
-Broken Access Control
+  *  Broken Access Control
 
-Security Misconfiguration
+  *  Security Misconfiguration
 
 
 ### In this exercise, I identified 14 vulnerabilities, described where they were located, and explained how to mitigate them.
