@@ -26,5 +26,6 @@ try:
     sys.exit(1)
 except KeyboardInterrupt:
     print("\nClosing crawler… Ctrl+C detected")
+    print_close()
     sys.exit(0)
 
