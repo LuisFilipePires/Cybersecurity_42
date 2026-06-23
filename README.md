@@ -2,7 +2,7 @@
 
 This repository contains all the projects from the Cybersecurity specialization at 42 School.
 
-## Cybersecurity Piscine
+## PISCINE CYBERSECURITY
 
 The `cybersecurity_piscine` folder contains 8 directories, each with multiple exercises covering different areas of cybersecurity:
 
