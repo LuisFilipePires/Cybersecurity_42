@@ -21,3 +21,10 @@ It is a list of the 10 most critical vulnerabilities in web applications.
 
 
 ### In this exercise, I identified 14 vulnerabilities, described where they were located, and explained how to mitigate them.
+
+1-Flag
+At copyright page, i used curl and find somme comments
+Let's use this browser : "ft_bornToSec". It will help you a lot.
+and
+You must come from : "https://www.nsa.gov/".
+understand the firt comment it a tip for a header and the second for a agent
