@@ -29,3 +29,8 @@ Example:
 curl -A "ft_bornToSec" -e "https://www.nsa.gov/" URL
 
 curl "http://10.18.200.104/?page=----" -A "ft_bornToSec" -H "referer: https://www.nsa.gov/" | grep "flag"
+
+---
+
+## FIX
+Do not rely on client-controlled headers for authentication or authorization decisions. Always validate permissions on the server side.
