@@ -1,30 +1,34 @@
 # DARKLY
 
-The most famous: OWASP Top 10
+This project is organized into folders numbered from 1 to 14.
 
-The most well-known project is:
+Each folder contains a directory called `Resources`, which includes:
+- a `README.md` file explaining the vulnerability found, where it was located, and how it was exploited;
+- a `flag` file containing the flag obtained after successfully completing the challenge.
 
--->OWASP Top 10<--
+The vulnerabilities covered in this project are based on common web security issues, especially those listed in the **OWASP Top 10**.
 
-It is a list of the 10 most critical vulnerabilities in web applications.
+The OWASP Top 10 is a list of the ten most critical security risks affecting web applications.
 
-### Common examples include
-  *  SQL Injection
+### Common examples include:
+- SQL Injection
+- Broken Authentication
+- Cross-Site Scripting (XSS)
+- Broken Access Control
+- Security Misconfiguration
 
-  *  Broken Authentication
+### Project Overview
 
-  *  Cross-Site Scripting (XSS)
+In this exercise, I identified 14 vulnerabilities, documented their locations, explained how they could be exploited, and described possible mitigation techniques.
 
-  *  Broken Access Control
+## Challenges
 
-  *  Security Misconfiguration
+### 1 - HTTP Headers
 
+**Vulnerability:** HTTP Header Manipulation
 
-### In this exercise, I identified 14 vulnerabilities, described where they were located, and explained how to mitigate them.
+**Description:**  
+The application relies on HTTP headers such as `User-Agent` and `Referer` to validate requests. By modifying these headers, it is possible to bypass certain restrictions and access hidden information.
 
-1-Flag
-At copyright page, i used curl and find somme comments
-Let's use this browser : "ft_bornToSec". It will help you a lot.
-and
-You must come from : "https://www.nsa.gov/".
-understand the firt comment it a tip for a header and the second for a agent
+**Mitigation:**  
+Do not rely on client-controlled headers for authentication or authorization decisions. Always validate permissions on the server side.
