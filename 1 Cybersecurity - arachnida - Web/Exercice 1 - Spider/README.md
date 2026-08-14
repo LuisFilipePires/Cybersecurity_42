@@ -43,12 +43,15 @@ Usage examples:
 ```text
 
 response = requests.get(url)
+
 The HTML is stored at RAM memory
 To extract text, use: variable = response.text
 To Save in .txt file
 html = response.text
+
 with open("page_html.txt", "w", encoding="utf-8") as f: f.write(html)
 The response variable is a object from the Requests library
+
 Successful responses 200 OK
 <Response [200]>
 	The request succeeded. The result and meaning of "success" depends on the HTTP method:
@@ -73,17 +76,20 @@ visdited.remove(url)
 
 ```text
 1. Command Line Parsing
+
 The program starts by parsing the command-line arguments:
     • URL (mandatory) 
     • -r : enable recursive crawling 
     • -l <depth> : define recursion depth 
     • -p <path> : define the image download directory 
+    
 The parser validates:
     • URL format (http:// or https://) 
     • depth value 
     • destination path 
     • duplicate URLs 
     • invalid flags 
+    
 The target domain is extracted and stored globally to prevent the crawler from leaving the original website.
 
 ```
@@ -93,14 +99,17 @@ The target domain is extracted and stored globally to prevent the crawler from l
 
 ```
 The crawler only visits pages belonging to the original domain.
+
 Example:
 https://example.com
 Allowed:
 https://example.com/about
 https://example.com/contact
+
 Ignored:
 https://google.com
 https://github.com
+
 This prevents the crawler from traversing the entire internet.
 ```
 
@@ -111,11 +120,14 @@ This prevents the crawler from traversing the entire internet.
 Before storing a URL in the visited set, it is normalized:
     • query parameters are removed 
     • fragments are removed 
-    • trailing slashes are removed 
+    • trailing slashes are removed
+    
 Example:
+
 https://example.com/page?id=123#section
 becomes:
 https://example.com/page
+
 This helps avoid revisiting the same page multiple times.
 ```
 
@@ -124,10 +136,12 @@ This helps avoid revisiting the same page multiple times.
 
 ```
 The crawler uses the Python requests library to retrieve web pages.
+
 A custom User-Agent header is sent:
 headers = {
     "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) Spider42/1.0"
 }
+
 Why?
 Many websites reject requests that look like automated bots.
 Using a browser-like User-Agent makes the request appear similar to a normal web browser and improves compatibility with websites.
@@ -151,6 +165,7 @@ are ignored.
 
 ```
 The HTML document is parsed using BeautifulSoup:
+
 soup = BeautifulSoup(response.text, "html.parser")
 BeautifulSoup allows the crawler to:
     • extract images (<img>) 
@@ -193,6 +208,7 @@ This creates a depth-first traversal of the website.
 
 ```
 A Python set is used to store previously visited URLs:
+s
 visited = set()
 Before visiting a page:
 if url in visited:
@@ -223,28 +239,30 @@ This allows the user to stop the crawl safely without displaying a Python traceb
     • Pathlib 
     • urllib.parse 
     • Colorama 
-General Workflow
-Parse Arguments
-       ↓
-Validate Input
-       ↓
-Set Original Domain
-       ↓
-Download Page
-       ↓
-Check Content-Type
-       ↓
-Parse HTML
-       ↓
-Download Images
-       ↓
-Extract Links
-       ↓
-Domain Check
-       ↓
-Visited Check
-       ↓
-Recursive Crawl
-       ↓
-Stop at Max Depth
+    
+	General Workflow
+
+	Parse Arguments
+	       ↓
+	Validate Input
+	       ↓
+	Set Original Domain
+	       ↓
+	Download Page
+ 	      ↓
+	Check Content-Type
+	       ↓
+	Parse HTML
+	       ↓
+	Download Images
+	       ↓
+	Extract Links
+	       ↓
+	Domain Check
+	       ↓
+	Visited Check
+	       ↓
+	Recursive Crawl
+	       ↓
+	Stop at Max Depth
 ```
