@@ -23,7 +23,7 @@ By default, the maximum depth is 5 if no depth is specified with the -l option.
 
 If -p option is specified, the new path location must be defined.
 
-```
+
 Usage examples:
 
 ``` ./Spider https://www.example.com ``` → Downloads images from the main page only (no recursion).
